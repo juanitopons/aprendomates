@@ -1,7 +1,5 @@
 package com.jp.aprendomates;
 
-import com.jp.aprendomates.util.SystemUiHider;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -9,6 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.jp.aprendomates.util.SystemUiHider;
+import com.jp.aprendomates.util.PreferencesManager;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -44,6 +45,7 @@ public class FirstActivity extends Activity {
 	 * The instance of the {@link SystemUiHider} for this activity.
 	 */
 	private SystemUiHider mSystemUiHider;
+	private PreferencesManager activityPreferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,10 @@ public class FirstActivity extends Activity {
 		// while interacting with the UI.
 		findViewById(R.id.dummy_button).setOnTouchListener(
 				mDelayHideTouchListener);
+		
+		activityPreferences = (PreferencesManager) getApplication();
+		// check and set preferences
+		activityPreferences.update();
 	}
 
 	@Override

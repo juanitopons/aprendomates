@@ -6,7 +6,7 @@
 		      android:title="Orientación de pantalla"
               android:summary="Selecciona el tipo de orientación de pantalla para la aplicación"
               android:key="orientation"
-              android:defaultValue="1"
+              android:defaultValue="0"
               android:entries="@array/listArray"
               android:entryValues="@array/listValues" />
     </PreferenceCategory>

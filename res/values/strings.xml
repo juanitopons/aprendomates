@@ -4,5 +4,6 @@
     <string name="app_name">AprendoMates</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="dummy_button">Dummy Button</string>
-
+    <string name="menu_settings">Preferencias</string>
+    
 </resources>

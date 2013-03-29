@@ -2,9 +2,13 @@ package com.jp.aprendomates;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -54,7 +58,7 @@ public class FirstActivity extends Activity {
 		setContentView(R.layout.activity_first);
 
 		final View controlsView = findViewById(R.id.fullscreen_content_controls);
-		final View contentView = findViewById(R.id.fullscreen_content);
+		final View contentView = findViewById(R.id.menu_content);
 
 		// Set up an instance of SystemUiHider to control the system UI for
 		// this activity.
@@ -121,6 +125,7 @@ public class FirstActivity extends Activity {
 		
 		activityPreferences = (PreferencesManager) getApplication();
 		// check and set preferences
+		activityPreferences.setActivity(this);
 		activityPreferences.update();
 	}
 
@@ -165,4 +170,27 @@ public class FirstActivity extends Activity {
 		mHideHandler.removeCallbacks(mHideRunnable);
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_menu, menu);
+        return true;
+    }
+	
+    /**
+     * Acción para cada Item del Menú
+     */
+    public boolean onOptionsItemSelected(MenuItem item){
+        /*El switch se encargará de gestionar cada elemento del menú dependiendo de su id,
+        por eso dijimos antes que ningún id de los elementos del menú podia ser igual.
+        */
+        switch(item.getItemId()){
+        case R.id.preferencias: //Nombre del id del menú, para combrobar que se ha pulsado
+        	startActivity(new Intent(this, AppPreferenceActivity.class));;
+        	break;
+        }
+        return true;
+    }
 }
